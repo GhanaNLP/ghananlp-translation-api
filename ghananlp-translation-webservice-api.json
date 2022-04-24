@@ -1,0 +1,110 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "GhanaNLP Translation WebService API",
+    "version": "1.0",
+    "description": "The GhanaNLP Translation WebService API",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "name": "GhanaNLP",
+      "url": "https://ghananlp.org/",
+      "email": "joel@algorine.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "translation-api.ghananlp.org",
+  "schemes": [
+    "https"
+  ],
+  "securityDefinitions": {
+    "apiKeyHeader": {
+      "type": "apiKey",
+      "name": "Ocp-Apim-Subscription-Key",
+      "in": "header"
+    },
+    "apiKeyQuery": {
+      "type": "apiKey",
+      "name": "subscription-key",
+      "in": "query"
+    }
+  },
+  "security": [
+    {
+      "apiKeyHeader": []
+    },
+    {
+      "apiKeyQuery": []
+    }
+  ],
+  "paths": {
+    "/translate": {
+      "post": {
+        "operationId": "post-translate",
+        "summary": "Translates given data",
+        "tags": [
+          "Translation Controller"
+        ],
+        "parameters": [
+          {
+            "name": "translate",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/translate"
+            },
+            "description": "Translates given data"
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/translate"
+            },
+            "examples": {
+              "application/json": {
+                "Api_User": "string",
+                "Api_Key": "string",
+                "in": "Kofi is going to school",
+                "lang": "en-tw"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "translate": {
+      "type": "object",
+      "properties": {
+        "in": {
+          "type": "string",
+          "format": "string"
+        },
+        "lang": {
+          "type": "string",
+          "format": "string"
+        }
+      },
+      "example": {
+        "in": "string",
+        "lang": "string"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Translation Controller",
+      "description": "Everything about API translation"
+    }
+  ]
+}
